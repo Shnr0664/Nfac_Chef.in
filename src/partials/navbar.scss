@@ -1,0 +1,97 @@
+.navbar{
+    height: 55px;
+    box-shadow: 0 3px 6px var(--shadow-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 998;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    text-shadow: 0 1px 7px var(--shadow-color);
+    .logo{
+        font-size: 1.2em;
+        font-family: 300;
+        color: var(--primary-color);
+        span{
+            color: var(--text-color);
+        }
+    }
+    .nav-links{
+        a{
+            margin-left: 1em;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            font-size: .9em;
+            &::before{
+                content: '';
+                display: inline-block;
+                height: 3px;
+                width: 100%;
+                background-color: var(--primary-color);
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                transform: scaleX(0);
+                transition: transform calc(var(--animation-speed)*0.3) ease-in-out;
+            }
+            &:hover{
+                &::before{
+                    transform: scaleX(1);
+                }
+            }
+            &.active{
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+        }
+    }
+    .sidebar-button{
+        height: 28px;
+        width: 30px;
+        position: relative;
+        display: none;
+        .bar{
+            height: 6px;
+            width: 100%;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            position: absolute;
+            transition: transform calc(var(--animation-speed)*0.3) ;
+            &:nth-child(1){
+                top: 0;
+            }
+            &:nth-child(2){
+                top: 50%;
+                transform-origin: right;
+                transform: scaleX(.8) translateY(-50%);
+            }
+            &:nth-child(3){
+                top: 100%;
+                transform-origin: right;
+                transform: scaleX(1.2) translateY(-100%);
+            }
+        }
+        &.active{
+            .bar{
+                transform-origin: center;
+                top: 50%;
+                &:nth-child(1){
+                    transform: translate(0,-50%) scale(1) rotate(45deg) ;
+                }
+                &:nth-child(2){
+                    transform: scaleX(0) translateY(-50%);
+                }
+                &:nth-child(3){
+                    transform: translate(0,-50%) rotate(-45deg) ;
+                }
+            }
+        }
+    }
+}
+
+@import "src/partials/sidebar.scss";
